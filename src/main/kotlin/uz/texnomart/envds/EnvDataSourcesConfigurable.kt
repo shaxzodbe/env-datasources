@@ -13,40 +13,40 @@ class EnvDataSourcesConfigurable(private val project: Project) : BoundConfigurab
         val state = EnvDataSourcesSettings.getInstance(project).state
 
         row {
-            checkBox("Включить плагин в этом проекте").bindSelected(state::enabled)
+            checkBox("Enable in this project").bindSelected(state::enabled)
         }
         row {
-            checkBox("Синхронизировать при открытии проекта").bindSelected(state::syncOnStartup)
+            checkBox("Sync when the project opens").bindSelected(state::syncOnStartup)
         }
         row {
-            checkBox("Синхронизировать при изменении .env").bindSelected(state::syncOnEnvChange)
+            checkBox("Sync when .env changes").bindSelected(state::syncOnEnvChange)
         }
         row {
-            checkBox("Сохранять пароли в хранилище IDE").bindSelected(state::savePasswords)
+            checkBox("Store passwords in the IDE password safe").bindSelected(state::savePasswords)
         }
         row {
-            checkBox("Удалять подключения, исчезнувшие из .env").bindSelected(state::removeStale)
+            checkBox("Remove data sources that disappeared from .env").bindSelected(state::removeStale)
         }
 
-        group("Что читать") {
-            row("Файлы:") {
+        group("What to read") {
+            row("Files:") {
                 textField().bindText(state::envFiles).columns(30)
-                    .comment("Через «;», путь относительно корней проекта")
+                    .comment("Separate with \";\"; paths are relative to the project roots")
             }
-            row("Префиксы ключей:") {
+            row("Key prefixes:") {
                 textField().bindText(state::keyPrefixes).columns(30)
                     .comment("DB → DB_HOST, DB_CATALOG_DATABASE, DB_ORDER_USERNAME")
             }
         }
 
-        group("Как называть") {
-            row("Шаблон имени:") {
+        group("Naming") {
+            row("Name template:") {
                 textField().bindText(state::nameTemplate).columns(30)
-                    .comment("Доступно: {group}, {database}, {env}, {project}")
+                    .comment("Available: {group}, {database}, {env}, {project}")
             }
-            row("Папка в дереве Database:") {
+            row("Folder in the Database tree:") {
                 textField().bindText(state::folderName).columns(30)
-                    .comment("Пусто — без папки")
+                    .comment("Empty means no folder")
             }
         }
     }

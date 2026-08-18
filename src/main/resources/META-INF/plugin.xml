@@ -29,6 +29,9 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <b>0.1.1</b> — fixed an "IDE error occurred" report on project open: passwords are no
+        longer written to the password safe on the UI thread. Settings, notifications and the
+        generated data source comment are now in English.<br/><br/>
         <b>0.1.0</b> — initial release: data sources from <code>.env</code> on project open,
         manual sync via <b>Tools | Sync Data Sources from .env</b>,
         settings under <b>Settings | Tools | Env Data Sources</b>.

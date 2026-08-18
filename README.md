@@ -3,6 +3,8 @@
 Плагин для PhpStorm: при открытии проекта читает `.env` и заводит подключения в
 **Database** — по одному на каждый набор ключей.
 
+![Подключения из .env в дереве Database](screenshots/01-database-tree.png)
+
 Для такого `.env`
 
 ```
@@ -71,14 +73,17 @@ DB_ORDER_PASSWORD=order_pass
 
 | Настройка | По умолчанию |
 |---|---|
-| Синхронизировать при открытии проекта | да |
-| Синхронизировать при изменении `.env` | да (с задержкой 1,5 с) |
-| Сохранять пароли | да |
-| Удалять исчезнувшие подключения | да |
-| Файлы | `.env` (несколько — через `;`) |
-| Префиксы ключей | `DB` |
-| Шаблон имени | `{project} — {group}`, доступны `{group}`, `{database}`, `{env}`, `{project}` |
-| Папка в дереве Database | `.env` |
+| `Enable in this project` | да |
+| `Sync when the project opens` | да |
+| `Sync when .env changes` | да (с задержкой 1,5 с) |
+| `Store passwords in the IDE password safe` | да |
+| `Remove data sources that disappeared from .env` | да |
+| `Files` | `.env` (несколько — через `;`) |
+| `Key prefixes` | `DB` |
+| `Name template` | `{project} — {group}`, доступны `{group}`, `{database}`, `{env}`, `{project}` |
+| `Folder in the Database tree` | `.env` |
+
+Интерфейс плагина англоязычный — он публикуется в Marketplace на международную аудиторию.
 
 Ручной запуск: **Tools → Sync Data Sources from .env**.
 

@@ -39,7 +39,7 @@ object EnvDataSourceSync {
 
         for (file in envFiles(project, settings)) {
             val text = runCatching { Files.readString(file) }
-                .onFailure { LOG.warn("Не удалось прочитать $file", it) }
+                .onFailure { LOG.warn("Failed to read $file", it) }
                 .getOrNull() ?: continue
 
             val connections = EnvDbConnections.collect(EnvParser.parse(text), settings.keyPrefixes)
@@ -155,11 +155,24 @@ object EnvDataSourceSync {
                 dataSource.passwordStorage = LocalDataSource.Storage.PERSIST
                 changed = true
             }
-            runCatching { DatabaseCredentials.getInstance().storePassword(dataSource, OneTimeString(password)) }
-                .onFailure { LOG.warn("Не удалось сохранить пароль для ${dataSource.name}", it) }
+            storePassword(dataSource, password)
         }
 
         return changed
+    }
+
+    /**
+     * PasswordSafe идёт в хранилище ОС, а это медленная операция: на EDT платформа её
+     * запрещает (SlowOperations) и пишет в лог SEVERE, из-за чего пользователь видит
+     * «IDE error occurred». Синхронизация приходит на EDT, поэтому пароль пишем в пуле.
+     */
+    private fun storePassword(dataSource: LocalDataSource, password: String) {
+        val app = ApplicationManager.getApplication()
+        val store = Runnable {
+            runCatching { DatabaseCredentials.getInstance().storePassword(dataSource, OneTimeString(password)) }
+                .onFailure { LOG.warn("Failed to store the password for ${dataSource.name}", it) }
+        }
+        if (app.isDispatchThread) app.executeOnPooledThread(store) else store.run()
     }
 
     private fun findDriver(driver: String): DatabaseDriver? {
@@ -168,7 +181,7 @@ object EnvDataSourceSync {
     }
 
     private fun comment(file: Path, connection: EnvDbConnection): String =
-        "Создано автоматически из ${file.fileName} (${connection.id})"
+        "Created automatically from ${file.fileName} (${connection.id})"
 
     private fun markerFor(project: Project, file: Path, connection: EnvDbConnection): String {
         val base = project.basePath?.let { runCatching { Path.of(it).relativize(file).toString() }.getOrNull() }

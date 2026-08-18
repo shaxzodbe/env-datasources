@@ -19,7 +19,7 @@ class SyncEnvDataSourcesAction : AnAction() {
 
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
-        object : Task.Backgroundable(project, "Синхронизация подключений из .env", true) {
+        object : Task.Backgroundable(project, "Syncing data sources from .env", true) {
             override fun run(indicator: ProgressIndicator) {
                 runSync(project)
             }
@@ -32,7 +32,7 @@ class SyncEnvDataSourcesAction : AnAction() {
         if (files.isEmpty()) {
             EnvDataSourcesNotifier.notifyError(
                 project,
-                "Не найден ни один из файлов: ${settings.envFileNames.joinToString()}",
+                "None of these files were found: ${settings.envFileNames.joinToString()}",
             )
             return
         }
