@@ -1,4 +1,4 @@
-package uz.texnomart.envds
+package io.github.shaxzodbe.envds
 
 /** Сопоставление значения `DB_CONNECTION` с JDBC-драйвером IDE и шаблоном URL. */
 object JdbcUrls {

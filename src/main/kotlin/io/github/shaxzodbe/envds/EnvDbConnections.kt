@@ -1,4 +1,4 @@
-package uz.texnomart.envds
+package io.github.shaxzodbe.envds
 
 /**
  * Одно подключение, вытащенное из `.env`.

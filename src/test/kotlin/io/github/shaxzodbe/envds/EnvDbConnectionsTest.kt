@@ -1,4 +1,4 @@
-package uz.texnomart.envds
+package io.github.shaxzodbe.envds
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
@@ -11,7 +11,7 @@ class EnvDbConnectionsTest {
         DB_CONNECTION=mysql
         DB_HOST=127.0.0.1
         DB_PORT=3306
-        DB_DATABASE=texnomart
+        DB_DATABASE=shop
         DB_USERNAME=root
         DB_PASSWORD="secret pass"
 
@@ -48,7 +48,7 @@ class EnvDbConnectionsTest {
         val main = connections().first { it.group.isEmpty() }
         assertEquals("root", main.username)
         assertEquals("secret pass", main.password)
-        assertEquals("jdbc:mysql://127.0.0.1:3306/texnomart", main.jdbcUrl)
+        assertEquals("jdbc:mysql://127.0.0.1:3306/shop", main.jdbcUrl)
         assertEquals("main", main.displayGroup)
     }
 

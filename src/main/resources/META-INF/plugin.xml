@@ -1,5 +1,5 @@
 <idea-plugin>
-    <id>uz.texnomart.env-datasources</id>
+    <id>io.github.shaxzodbe.env-datasources</id>
     <name>Env Data Sources</name>
     <vendor email="sulaymanovshaxzod@gmail.com">Shaxzodbek Sulaymanov</vendor>
 
@@ -41,19 +41,19 @@
     <depends>com.intellij.database</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <postStartupActivity implementation="uz.texnomart.envds.EnvDataSourcesStartupActivity"/>
-        <projectService serviceImplementation="uz.texnomart.envds.EnvDataSourcesSettings"/>
+        <postStartupActivity implementation="io.github.shaxzodbe.envds.EnvDataSourcesStartupActivity"/>
+        <projectService serviceImplementation="io.github.shaxzodbe.envds.EnvDataSourcesSettings"/>
         <projectConfigurable
                 parentId="tools"
-                instance="uz.texnomart.envds.EnvDataSourcesConfigurable"
-                id="uz.texnomart.envds.settings"
+                instance="io.github.shaxzodbe.envds.EnvDataSourcesConfigurable"
+                id="io.github.shaxzodbe.envds.settings"
                 displayName="Env Data Sources"/>
         <notificationGroup id="Env Data Sources" displayType="BALLOON"/>
     </extensions>
 
     <actions>
-        <action id="uz.texnomart.envds.Sync"
-                class="uz.texnomart.envds.SyncEnvDataSourcesAction"
+        <action id="io.github.shaxzodbe.envds.Sync"
+                class="io.github.shaxzodbe.envds.SyncEnvDataSourcesAction"
                 text="Sync Data Sources from .env"
                 description="Пересоздать подключения к БД по .env">
             <add-to-group group-id="ToolsMenu" anchor="last"/>

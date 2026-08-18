@@ -1,4 +1,4 @@
-package uz.texnomart.envds
+package io.github.shaxzodbe.envds
 
 import com.intellij.credentialStore.OneTimeString
 import com.intellij.database.access.DatabaseCredentials

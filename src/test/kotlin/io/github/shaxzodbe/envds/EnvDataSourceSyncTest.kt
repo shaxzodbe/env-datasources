@@ -1,4 +1,4 @@
-package uz.texnomart.envds
+package io.github.shaxzodbe.envds
 
 import com.intellij.database.dataSource.DatabaseDriverManager
 import com.intellij.database.dataSource.LocalDataSource
@@ -42,7 +42,7 @@ class EnvDataSourceSyncTest : BasePlatformTestCase() {
     fun testCreatesOneDataSourcePerGroup() {
         val result = EnvDataSourceSync.apply(
             project,
-            wanted(connection("", "texnomart"), connection("CATALOG", "catalog"), connection("ORDER", "orders")),
+            wanted(connection("", "shop"), connection("CATALOG", "catalog"), connection("ORDER", "orders")),
         )
 
         assertEquals(3, result.created.size)
