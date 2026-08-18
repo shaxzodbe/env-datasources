@@ -1,0 +1,59 @@
+<idea-plugin>
+    <id>uz.texnomart.env-datasources</id>
+    <name>Env Data Sources</name>
+    <vendor email="sulaymanovshaxzod@gmail.com">Shaxzodbek Sulaymanov</vendor>
+
+    <description><![CDATA[
+        <p>Creates IDE database connections from your project's <code>.env</code> file — no manual
+        setup of host, port, user and password for every project and every service.</p>
+
+        <p>On project open the plugin reads <code>.env</code> and creates one data source per group
+        of keys. Keys named <code>DB_&lt;GROUP&gt;_&lt;FIELD&gt;</code> become separate data sources,
+        while missing fields (host, port, driver) are inherited from the base <code>DB_*</code> set —
+        so a typical Laravel <code>.env</code> with several connections yields several ready-to-use
+        data sources.</p>
+
+        <ul>
+            <li>Re-syncs when <code>.env</code> changes; connections are matched by a marker property,
+                so they are updated instead of duplicated.</li>
+            <li>Connections you created by hand are never touched.</li>
+            <li>Passwords go to the IDE password store, not to <code>dataSources.xml</code>.</li>
+            <li>Supports MySQL, MariaDB, PostgreSQL, SQLite, SQL Server, Oracle and ClickHouse,
+                including Doctrine-style aliases such as <code>pdo_mysql</code>.</li>
+            <li>Manual run: <b>Tools | Sync Data Sources from .env</b>.
+                Settings: <b>Settings | Tools | Env Data Sources</b>.</li>
+        </ul>
+
+        <p>Requires the bundled <b>Database Tools and SQL</b> plugin (included in PhpStorm,
+        IntelliJ IDEA Ultimate and other paid IDEs).</p>
+    ]]></description>
+
+    <change-notes><![CDATA[
+        <b>0.1.0</b> — initial release: data sources from <code>.env</code> on project open,
+        manual sync via <b>Tools | Sync Data Sources from .env</b>,
+        settings under <b>Settings | Tools | Env Data Sources</b>.
+    ]]></change-notes>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.database</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <postStartupActivity implementation="uz.texnomart.envds.EnvDataSourcesStartupActivity"/>
+        <projectService serviceImplementation="uz.texnomart.envds.EnvDataSourcesSettings"/>
+        <projectConfigurable
+                parentId="tools"
+                instance="uz.texnomart.envds.EnvDataSourcesConfigurable"
+                id="uz.texnomart.envds.settings"
+                displayName="Env Data Sources"/>
+        <notificationGroup id="Env Data Sources" displayType="BALLOON"/>
+    </extensions>
+
+    <actions>
+        <action id="uz.texnomart.envds.Sync"
+                class="uz.texnomart.envds.SyncEnvDataSourcesAction"
+                text="Sync Data Sources from .env"
+                description="Пересоздать подключения к БД по .env">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>

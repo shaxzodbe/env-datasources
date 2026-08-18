@@ -1,0 +1,8 @@
+# Скопируйте в local.properties и поправьте под свою машину. Файл не коммитится.
+
+# Собирать против локально установленного PhpStorm вместо скачивания дистрибутива.
+# Ускоряет первую сборку с минут до секунд.
+#localIdePath=/home/<user>/.local/share/JetBrains/Toolbox/apps/phpstorm
+
+# Сборке нужна JDK 21. Если системная java старее, укажите JBR из PhpStorm:
+#org.gradle.java.home=/home/<user>/.local/share/JetBrains/Toolbox/apps/phpstorm/jbr
