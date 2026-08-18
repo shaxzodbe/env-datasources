@@ -3,6 +3,8 @@
 Плагин для PhpStorm: при открытии проекта читает `.env` и заводит подключения в
 **Database** — по одному на каждый набор ключей.
 
+Демо (35 секунд): https://youtu.be/ztGDTMBs9IY
+
 ![Подключения из .env в дереве Database](screenshots/01-database-tree.png)
 
 Для такого `.env`
