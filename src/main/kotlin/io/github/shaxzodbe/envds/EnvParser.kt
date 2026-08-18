@@ -1,4 +1,4 @@
-package uz.texnomart.envds
+package io.github.shaxzodbe.envds
 
 /**
  * Разбор `.env` в стиле dotenv/Laravel: `export`, комментарии, кавычки,

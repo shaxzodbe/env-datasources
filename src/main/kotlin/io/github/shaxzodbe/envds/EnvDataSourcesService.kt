@@ -1,4 +1,4 @@
-package uz.texnomart.envds
+package io.github.shaxzodbe.envds
 
 import com.intellij.openapi.Disposable
 import com.intellij.openapi.application.ApplicationManager

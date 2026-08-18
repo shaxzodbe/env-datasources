@@ -1,4 +1,4 @@
-package uz.texnomart.envds
+package io.github.shaxzodbe.envds
 
 import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.State

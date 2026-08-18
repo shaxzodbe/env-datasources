@@ -2,6 +2,12 @@
 
 ## 0.1.1
 
+- Plugin ID и пакеты переименованы: `uz.texnomart.env-datasources` →
+  `io.github.shaxzodbe.env-datasources`, `uz.texnomart.envds` →
+  `io.github.shaxzodbe.envds`. Плагин публикуется от личного аккаунта, к Texnomart
+  отношения не имеет. ID в Marketplace не меняется после публикации, поэтому
+  переименование сделано до неё.
+
 - Пароли больше не пишутся в PasswordSafe на EDT: платформа запрещает там медленные
   операции, из-за чего при открытии проекта всплывало «IDE error occurred».
   Подключения при этом создавались, но пользователь видел ошибку IDE.
